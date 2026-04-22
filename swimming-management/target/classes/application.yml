@@ -1,0 +1,36 @@
+# 应用配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: swimming-management
+
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/swimming_pool_management?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  # JPA配置（优化版）
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        # 移除dialect配置，让Hibernate自动选择
+    open-in-view: false  # 解决警告
+
+# 日志配置
+logging:
+  level:
+    com.swimming.management: debug
